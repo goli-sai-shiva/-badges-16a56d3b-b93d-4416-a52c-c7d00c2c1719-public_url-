@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ badge.title }}</title>
+    <meta name="description" content="{{ badge.description }}">
+    <meta property="og:title" content="{{ badge.title }}">
+    <meta property="og:description" content="{{ badge.description }}">
+    <meta property="og:image" content="{{ badge.image_url }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'badge_list' %}">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="badge-container">
+            <div class="badge-image">
+                <img src="{{ badge.image_url }}" alt="{{ badge.title }}">
+            </div>
+            
+            <div class="badge-details">
+                <h1>{{ badge.title }}</h1>
+                <p>Issued by: {{ badge.issuer }}</p>
+                <p>{{ badge.description }}</p>
+                
+                <div class="badge-dates">
+                    <p>Earned: {{ badge.earn_date }}</p>
+                    <p>Expires: {{ badge.expiry_date }}</p>
+                </div>
+
+                <div class="badge-skills">
+                    <h2>Skills</h2>
+                    <ul>
+                        {% for skill in badge.skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
